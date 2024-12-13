@@ -1,0 +1,17 @@
+streamlit
+yfinance
+matplotlib
+numpy
+pandas
+seaborn
+plotly
+python-dotenv
+langchain_groq
+crewai
+crewai_tools
+scikit-learn
+keras 
+tensorflow 
+torch
+langchain-huggingface
+streamlit-lottie
