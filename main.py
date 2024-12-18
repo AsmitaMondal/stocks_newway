@@ -1059,7 +1059,6 @@ def main():
         st.markdown("""
             * **Asmita-Email:** asmita.mondal@msds.christuniversity.in
             * **Sayan-Email:** sayan.pal@msds.christuniversity.in
-            * **GitHub:** [GitHub Project Repository]
         """)
     
     if choice == "Visualize":
