@@ -796,7 +796,7 @@ def show_visualize():
 
             # Predefined list of stocks
             stock_options = [
-                "AAPL", "AMZN", "MSFT", "TSLA", "GOOGL", "META", "NFLX", "NVDA", "BABA", "FB",
+                "AAPL", "AMZN", "MSFT", "TSLA", "GOOG", "META", "NFLX", "NVDA", "BABA", "FB",
                 "JPM", "V", "WMT", "DIS", "PFE", "BA", "CSCO", "INTC", "IBM", "KO", "MCD", "PYPL",
                 "AMGN", "NVDA", "CVX", "XOM", "GS", "UNH", "ORCL", "LLY"
             ]
