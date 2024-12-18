@@ -422,7 +422,7 @@ def build_mogrifier_lstm_model(input_shape, units=128, mogrifier_rounds=5):
 # Function to plot predictions and calculate metrics
 def evaluate_and_plot(model, X_train, y_train, X_test, y_test, scaler=None):
     # Train the model
-    model.fit(X_train, y_train, epochs=100, batch_size=64, validation_data=(X_test, y_test), verbose=1)    
+    model.fit(X_train, y_train, epochs=20, batch_size=64, validation_data=(X_test, y_test), verbose=1)    
     # Make predictions
     predicted_prices = model.predict(X_test)
 
