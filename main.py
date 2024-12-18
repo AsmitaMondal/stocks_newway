@@ -29,8 +29,9 @@ import json
 from streamlit_lottie import st_lottie
 __import__('pysqlite3')
 import sys
+import pysqlite3
+
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-import sqlite3
 
 warnings.filterwarnings("ignore")
 load_dotenv()
