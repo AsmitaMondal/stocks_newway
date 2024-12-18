@@ -5,6 +5,7 @@ import streamlit as st
 import yfinance as yf
 import datetime
 import pandas as pd
+import google.generativeai as genai
 import matplotlib.pyplot as plt
 from plotly import graph_objects as go
 import altair as alt
