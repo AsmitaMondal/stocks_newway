@@ -36,7 +36,7 @@ GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 groq_model = ChatGroq(model="groq/llama3-8b-8192", api_key=GROQ_API_KEY)
 
 # Set the page configuration for Streamlit
-st.set_page_config(page_title="Stock Price Analysis", page_icon="📈", layout="wide")
+st.set_page_config(page_title="PredictorX", page_icon="📈", layout="wide")
 
 # Function for calling local CSS file
 def local_css(file_name):
