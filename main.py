@@ -1241,7 +1241,7 @@ def main():
 
         # Ticker symbols and their full company names
         tickers = [
-            ("AAPL", "Apple Inc. 🍏"), ("GOOGL", "Alphabet Inc. (Google) 🧑‍💻"), ("AMZN", "Amazon.com, Inc. 📦"), 
+            ("AAPL", "Apple Inc. 🍏"), ("GOOG", "Alphabet Inc. (Google) 🧑‍💻"), ("AMZN", "Amazon.com, Inc. 📦"), 
             ("MSFT", "Microsoft Corporation 💻"), ("TSLA", "Tesla Inc. 🚗"), ("FB", "Meta Platforms, Inc. (Facebook) 📱"),
             ("NVDA", "NVIDIA Corporation 🎮"), ("DIS", "The Walt Disney Company 🎬"), ("NFLX", "Netflix, Inc. 📺"),
             ("BA", "The Boeing Company ✈️"), ("WMT", "Walmart Inc. 🛒"), ("JNJ", "Johnson & Johnson 💊"), 
