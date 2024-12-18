@@ -421,9 +421,9 @@ def build_mogrifier_lstm_model(input_shape, units=128, mogrifier_rounds=5):
     return model
 
 # Function to plot predictions and calculate metrics
-def evaluate_and_plot(model, X_train, y_train, X_test, y_test, scaler=None):
+def evaluate_and_plot(model, X_train, y_train, X_test, y_test,epochs, scaler=None):
     # Train the model
-    model.fit(X_train, y_train, epochs=20, batch_size=64, validation_data=(X_test, y_test), verbose=1)    
+    model.fit(X_train, y_train, epochs=epochs, batch_size=64, validation_data=(X_test, y_test), verbose=1)    
     # Make predictions
     predicted_prices = model.predict(X_test)
 
@@ -449,7 +449,7 @@ def evaluate_and_plot(model, X_train, y_train, X_test, y_test, scaler=None):
     
     return mse, mae, rmse, r2
 
-def compare_models(X_train, y_train, X_test, y_test, scaler=None):
+def compare_models(X_train, y_train, X_test, y_test,epochs, scaler=None):
     # Initialize a DataFrame to store the results
     results_list = []
 
@@ -457,35 +457,35 @@ def compare_models(X_train, y_train, X_test, y_test, scaler=None):
     model_lstm = build_normal_lstm_model((X_train.shape[1], 1))
     print("Training VANILLA LSTM...")
     st.write("Training VANILLA LSTM...")
-    mse, mae, rmse, r2 = evaluate_and_plot(model_lstm, X_train, y_train, X_test, y_test, scaler)
+    mse, mae, rmse, r2 = evaluate_and_plot(model_lstm, X_train, y_train, X_test, y_test,epochs, scaler)
     results_list.append({'Model': 'VANILLA LSTM', 'MSE': mse, 'MAE': mae, 'RMSE': rmse, 'R2': r2}) # append to list
     
     # 2. Improved LSTM
     model_improved_lstm = build_improved_lstm_model((X_train.shape[1], 1))
     print("Training STACKED LSTM...")
     st.write("Training STACKED LSTM...")
-    mse, mae, rmse, r2 = evaluate_and_plot(model_improved_lstm, X_train, y_train, X_test, y_test, scaler)
+    mse, mae, rmse, r2 = evaluate_and_plot(model_improved_lstm, X_train, y_train, X_test, y_test,epochs, scaler)
     results_list.append({'Model': 'STACKED LSTM', 'MSE': mse, 'MAE': mae, 'RMSE': rmse, 'R2': r2}) # append to list
     
     # 3. Normal GRU
     model_gru = build_normal_gru_model((X_train.shape[1], 1))
     print("Training GRU...")
     st.write("Training GRU...")
-    mse, mae, rmse, r2 = evaluate_and_plot(model_gru, X_train, y_train, X_test, y_test, scaler)
+    mse, mae, rmse, r2 = evaluate_and_plot(model_gru, X_train, y_train, X_test, y_test,epochs, scaler)
     results_list.append({'Model': ' GRU', 'MSE': mse, 'MAE': mae, 'RMSE': rmse, 'R2': r2}) # append to list
     
     # 4. RNN Model
     model_hybrid = build_momentum_rnn((X_train.shape[1], 1))
     print("Training MOMENTUM RNN...")
     st.write("Training MOMENTUM RNN...")
-    mse, mae, rmse, r2 = evaluate_and_plot(model_hybrid, X_train, y_train, X_test, y_test, scaler)
+    mse, mae, rmse, r2 = evaluate_and_plot(model_hybrid, X_train, y_train, X_test, y_test,epochs, scaler)
     results_list.append({'Model': 'MOMENTUM RNN', 'MSE': mse, 'MAE': mae, 'RMSE': rmse, 'R2': r2}) # append to list
 
     # 5. Mogrifier LSTM Model
     model_mogrifier = build_mogrifier_lstm_model((X_train.shape[1], 1))
     print("Training MOGRIFIER LSTM...")
     st.write("Training MOGRIFIER LSTM...")
-    mse, mae, rmse, r2 = evaluate_and_plot(model_mogrifier, X_train, y_train, X_test, y_test, scaler)
+    mse, mae, rmse, r2 = evaluate_and_plot(model_mogrifier, X_train, y_train, X_test, y_test,epochs, scaler)
     results_list.append({'Model': 'MOGRIFIER LSTM', 'MSE': mse, 'MAE': mae, 'RMSE': rmse, 'R2': r2}) # append to list
 
     results = pd.DataFrame(results_list)
@@ -1088,7 +1088,8 @@ def main():
         )
         end_date = datetime.datetime.today().date()
         start_date = end_date - datetime.timedelta(days=5 * 365)
-
+        options = [2, 5, 10, 20, 50, 100, 150, 200]
+        selected_option = st.sidebar.selectbox("Select number of Epochs", options)
         if st.sidebar.button("🗃️ Fetch Data"):
             with st.spinner("Getting Your Data..."):
 
@@ -1150,7 +1151,7 @@ def main():
             st.session_state["X_test"] = X_test
             st.session_state["y_train"] = y_train
             st.session_state["y_test"] = y_test
-
+            st.session_state["selected_option"]=selected_option
             st.write(f"Training set: X_train shape = {X_train.shape}, y_train shape = {y_train.shape}")
             st.write(f"Testing set: X_test shape = {X_test.shape}, y_test shape = {y_test.shape}")
 
@@ -1164,7 +1165,8 @@ def main():
                         st.session_state["X_train"], 
                         st.session_state["y_train"], 
                         st.session_state["X_test"], 
-                        st.session_state["y_test"], 
+                        st.session_state["y_test"],
+                        st.session_state["selected_option"],
                         scaler=st.session_state.get("scaler")
                     )
                 
