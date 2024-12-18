@@ -27,6 +27,10 @@ import warnings
 from typing import List
 import json
 from streamlit_lottie import st_lottie
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+import sqlite3
 
 warnings.filterwarnings("ignore")
 load_dotenv()
