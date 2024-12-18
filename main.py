@@ -997,7 +997,7 @@ def main():
    
     choice = sidebar_navigation()
     if choice == "About":
-        st.title("📊 About Our Stock Analysis Tool ")
+        st.title("📊 About PredictorX Tool ")
         with open("images/stocks.json", "r") as f:
             lottie_animation = json.load(f)
         col1, col2 = st.columns([1, 1])  # Adjust proportions as needed
