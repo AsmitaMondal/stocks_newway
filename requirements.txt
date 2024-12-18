@@ -16,3 +16,4 @@ torch
 langchain-huggingface
 streamlit-lottie
 pysqlite3-binary
+google-generativeai
