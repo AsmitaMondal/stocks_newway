@@ -1,1 +1,3 @@
-# stocks_newway
+# PredictX
+
+[TRY HERE](https://predictorx.streamlit.app/)
